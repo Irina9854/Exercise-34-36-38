@@ -1,47 +1,44 @@
 ﻿// Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива
+
 Console.WriteLine("Введите размер массива:  ");
 int size = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите минимальное число массива: ");
-double A = Math.Round(new Random().NextDouble() + new Random().Next(0,9),2);
-Console.WriteLine("Введите максимальное число массива: ");
-double B = Math.Round(new Random().NextDouble() + new Random().Next(0,9),2);
-int [] numbers = new int[size];
+double [] numbers = new double[size];
 
-FillArrayRandomNumbers(numbers);
+FillArrayWithRandom(numbers);
+Console.WriteLine ("Случайный массив: ");
 PrintArray(numbers);
 
-for (int i = 0; i < numbers.Length; i++)
+double min = Int32.MaxValue;
+double max = Int32.MinValue;
+
+for (int a = 0; a < numbers.Length; a++)
 {
-    if (numbers[i] > B)
+    if (numbers[a] > max)
     {
-        double max = numbers[i];
+        max = numbers[a];
     }
-    if (numbers[i] < A)
+    if (numbers[a] < min)
     {
-        double min = numbers[i];
+        min = numbers[a];
     }
 }
-Console.WriteLine($"Разница между максимальным и минимальным числом = {B - A}");
+Console.WriteLine($"Разница между максимальным и минимальным числом = {max - min}");
 
-void FillArrayRandomNumbers(int [] array)
+void FillArrayWithRandom(double[] numbers)
 {
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0 ; i < numbers.Length; i++)
     {
-        array[i] = new Random().Next(min, max);
+        numbers[i] = Convert.ToDouble (new Random().Next(0,100))/10;
     }
 }
 
-void PrintArray(int[] array)
+void PrintArray(double[] numbers)
 {
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write(array[i] + " ");
-    }
+    Console.Write("[ ");
+    for(int i = 0; i < numbers.Length; i++)
+        {
+            Console.Write(numbers[i] + " ");
+        }
+    Console.Write("]");
     Console.WriteLine();
-}
-
-int ReadInt(string message)
-{
-    Console.Write(message);
-    return Convert.ToInt32(Console.ReadLine());
 }
